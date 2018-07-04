@@ -52,6 +52,7 @@ class LuaConan(ConanFile):
             "lua.hpp",
             "lualib.h",
             "lauxlib.h",
+            "luaconf.h",
         ]
 
         for name in export_includes:
