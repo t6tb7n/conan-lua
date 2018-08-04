@@ -8,7 +8,7 @@ The packages generated with this **conanfile** can be found on [bintray](https:/
 
 | Bintray | Travis | Appveyor |
 |---------|--------|----------|
-|[ ![Download](https://api.bintray.com/packages/zimmerk/conan/lua%3Azimmerk/images/download.svg) ](https://bintray.com/zimmerk/conan/lua%3Azimmerk/_latestVersion)|[![Build Status](https://travis-ci.org/AtaLuZiK/conan-lua.svg?branch=release%2F5.3.4)](https://travis-ci.org/AtaLuZiK/conan-lua)|[![Build status](https://ci.appveyor.com/api/projects/status/fq97h0w28mn04v3y/branch/release/5.3.4?svg=true)](https://ci.appveyor.com/project/AtaLuZiK/conan-lua/branch/release/5.3.4)|
+|[ ![Download](https://api.bintray.com/packages/zimmerk/conan/lua%3Azimmerk/images/download.svg) ](https://bintray.com/zimmerk/conan/lua%3Azimmerk/_latestVersion)|[![Build Status](https://travis-ci.org/AtaLuZiK/conan-lua.svg?branch=release%2F5.3.4)](https://travis-ci.org/AtaLuZiK/conan-lua)|[![Build status](https://ci.appveyor.com/api/projects/status/0s9w9tb38kvj4o8r/branch/release/5.3.4?svg=true)](https://ci.appveyor.com/project/AtaLuZiK/conan-lua/branch/release/5.3.4)|
 
 ## Reuse the packages
 
