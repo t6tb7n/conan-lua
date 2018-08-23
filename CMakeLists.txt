@@ -69,14 +69,15 @@ elseif(MINGW OR WIN32)
 endif()
 
 if(${BUILD_INTERPRETER})
-  add_executable(lua_interpreter ${LUA_SOURCES_DIR}/lua.c ${LUA_LIB_SOURCES})
+  add_executable(lua_interpreter src/lua.c)
+  target_link_libraries(lua_interpreter lua)
   set_target_properties(lua_interpreter PROPERTIES
     OUTPUT_NAME lua
   )
 endif(${BUILD_INTERPRETER})
 
 if(${BUILD_COMPILER})
-  add_executable(lua_compiler ${LUA_SOURCES_DIR}/luac.c ${LUA_LIB_SOURCES})
+  add_executable(lua_compiler src/luac.c ${LUA_LIB_SOURCES})
   set_target_properties(lua_compiler PROPERTIES
     OUTPUT_NAME luac
   )
