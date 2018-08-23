@@ -4,42 +4,49 @@ project(lua LANGUAGES C)
 option(BUILD_INTERPRETER "Build interpreter" OFF)
 option(BUILD_COMPILER "Build compiler" OFF)
 
-set(LUA_SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(LUA_LIB_SOURCES
-  ${LUA_SOURCES_DIR}/lapi.c
-  ${LUA_SOURCES_DIR}/lcode.c
-  ${LUA_SOURCES_DIR}/lctype.c
-  ${LUA_SOURCES_DIR}/ldebug.c
-  ${LUA_SOURCES_DIR}/ldo.c
-  ${LUA_SOURCES_DIR}/ldump.c
-  ${LUA_SOURCES_DIR}/lfunc.c
-  ${LUA_SOURCES_DIR}/lgc.c
-  ${LUA_SOURCES_DIR}/llex.c
-  ${LUA_SOURCES_DIR}/lmem.c
-  ${LUA_SOURCES_DIR}/lobject.c
-  ${LUA_SOURCES_DIR}/lopcodes.c
-  ${LUA_SOURCES_DIR}/lparser.c
-  ${LUA_SOURCES_DIR}/lstate.c
-  ${LUA_SOURCES_DIR}/lstring.c
-  ${LUA_SOURCES_DIR}/ltable.c
-  ${LUA_SOURCES_DIR}/ltm.c
-  ${LUA_SOURCES_DIR}/lundump.c
-  ${LUA_SOURCES_DIR}/lvm.c
-  ${LUA_SOURCES_DIR}/lzio.c
-  ${LUA_SOURCES_DIR}/lauxlib.c
-  ${LUA_SOURCES_DIR}/lbaselib.c
-  ${LUA_SOURCES_DIR}/lbitlib.c
-  ${LUA_SOURCES_DIR}/lcorolib.c
-  ${LUA_SOURCES_DIR}/ldblib.c
-  ${LUA_SOURCES_DIR}/liolib.c
-  ${LUA_SOURCES_DIR}/lmathlib.c
-  ${LUA_SOURCES_DIR}/loslib.c
-  ${LUA_SOURCES_DIR}/lstrlib.c
-  ${LUA_SOURCES_DIR}/ltablib.c
-  ${LUA_SOURCES_DIR}/lutf8lib.c
-  ${LUA_SOURCES_DIR}/loadlib.c
-  ${LUA_SOURCES_DIR}/linit.c
+  src/lapi.c
+  src/lcode.c
+  src/lctype.c
+  src/ldebug.c
+  src/ldo.c
+  src/ldump.c
+  src/lfunc.c
+  src/lgc.c
+  src/llex.c
+  src/lmem.c
+  src/lobject.c
+  src/lopcodes.c
+  src/lparser.c
+  src/lstate.c
+  src/lstring.c
+  src/ltable.c
+  src/ltm.c
+  src/lundump.c
+  src/lvm.c
+  src/lzio.c
+  src/lauxlib.c
+  src/lbaselib.c
+  src/lbitlib.c
+  src/lcorolib.c
+  src/ldblib.c
+  src/liolib.c
+  src/lmathlib.c
+  src/loslib.c
+  src/lstrlib.c
+  src/ltablib.c
+  src/lutf8lib.c
+  src/loadlib.c
+  src/linit.c
 )
+
+if(WIN32)
+  list(APPEND LUA_LIB_SOURCES
+    windows/resource.h
+    windows/lua.rc
+  )
+  set_source_files_properties(windows/lua.rc PROPERTIES LANGUAGE RC)
+endif(WIN32)
 
 add_definitions(-DLUA_COMPAT_5_2)
 

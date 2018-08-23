@@ -13,7 +13,7 @@ class LuaConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {"build_interpreter": [True, False], "build_compiler": [True, False]}
     default_options = "build_interpreter=False", "build_compiler=False"
-    exports = ["CMakeLists.txt"]
+    exports_sources = "CMakeLists.txt", "windows/*"
     generators = "cmake"
 
     @property
@@ -32,6 +32,8 @@ class LuaConan(ConanFile):
 
     def build(self):
         shutil.move("CMakeLists.txt", "%s/CMakeLists.txt" % self.zip_folder_name)
+        if self.settings.os == "Windows":
+            shutil.move("windows", "%s" % self.zip_folder_name)
         with tools.chdir(self.zip_folder_name):
             os.mkdir("_build")
             with tools.chdir("_build"):
