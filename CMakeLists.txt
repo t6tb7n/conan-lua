@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
 project(lua LANGUAGES C)
 
+include(${CONANBUILDINFO_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
 option(BUILD_INTERPRETER "Build interpreter" OFF)
 option(BUILD_COMPILER "Build compiler" OFF)
 
@@ -74,6 +77,11 @@ if(${BUILD_INTERPRETER})
   set_target_properties(lua_interpreter PROPERTIES
     OUTPUT_NAME lua
   )
+  if(NOT WIN32)
+    target_include_directories(lua_interpreter
+      PRIVATE ${CONAN_INCLUDE_DIRS_READLINE})
+    target_link_libraries(lua_interpreter dl ${CONAN_LIBS_READLINE})
+  endif(NOT WIN32)
 endif(${BUILD_INTERPRETER})
 
 if(${BUILD_COMPILER})

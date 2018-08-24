@@ -20,6 +20,10 @@ class LuaConan(ConanFile):
     def zip_folder_name(self):
         return "lua-%s" % self.version
 
+    def requirements(self):
+        if self.settings.os != "Windows" and self.options.build_interpreter:
+            self.requires("readline/7.0@bincrafters/stable", private=True)
+
     def config(self):
         del self.settings.compiler.libcxx
 
@@ -34,6 +38,8 @@ class LuaConan(ConanFile):
         shutil.move("CMakeLists.txt", "%s/CMakeLists.txt" % self.zip_folder_name)
         if self.settings.os == "Windows":
             shutil.move("windows", "%s" % self.zip_folder_name)
+
+        conanbuildinfo_dir = os.path.abspath(os.curdir)
         with tools.chdir(self.zip_folder_name):
             os.mkdir("_build")
             with tools.chdir("_build"):
@@ -42,6 +48,7 @@ class LuaConan(ConanFile):
                     cmake.definitions["BUILD_INTERPRETER"] = "ON"
                 if self.options.build_compiler:
                     cmake.definitions["BUILD_COMPILER"] = "ON"
+                cmake.definitions["CONANBUILDINFO_DIR"] = conanbuildinfo_dir
                 cmake.configure(build_dir=".", source_dir="..")
                 cmake.build(build_dir=".")
 
