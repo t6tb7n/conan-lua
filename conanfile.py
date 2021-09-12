@@ -44,6 +44,7 @@ class LuaConan(ConanFile):
             os.mkdir("_build")
             with tools.chdir("_build"):
                 cmake = CMake(self)
+                cmake.verbose = True
                 if self.options.build_interpreter:
                     cmake.definitions["BUILD_INTERPRETER"] = "ON"
                 if self.options.build_compiler:
@@ -78,3 +79,5 @@ class LuaConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["lua"]
+        if self.settings.os == 'Linux':
+            self.cpp_info.system_libs = ["dl"]
